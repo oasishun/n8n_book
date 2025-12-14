@@ -3,6 +3,25 @@ node_modules/
 package-lock.json
 yarn.lock
 
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+venv/
+env/
+ENV/
+.venv
+*.egg-info/
+dist/
+build/
+*.egg
+
+# Jupyter Notebook
+.ipynb_checkpoints
+*.ipynb_checkpoints/
+
 # Environment variables
 .env
 .env.local
@@ -24,7 +43,5 @@ logs/
 .cursor/debug.log
 
 # Build outputs
-dist/
-build/
 *.tsbuildinfo
 
