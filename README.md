@@ -32,3 +32,4 @@ jupyter lab
 - `code_review.ipynb`: 코드 리뷰를 위한 노트북
 - `requirements.txt`: Python 패키지 의존성
 
+#test중입니다.
