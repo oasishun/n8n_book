@@ -12,7 +12,7 @@ jobs:
     steps:
       - name: Send PR review request info via curl
         env:
-          TARGET_URL: https://unacrimonious-anesthetically-dora.ngrok-free.dev/webhook-test/25dadbc3-bdf1-44ab-9071-2d59ec0d4870/webhook
+          TARGET_URL: ${{ secrets.WEBHOOK_URL }}
           GITHUB_EVENT_PATH: ${{ github.event_path }}
         run: |
           echo "📦 GitHub Event Payload:"
