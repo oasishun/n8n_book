@@ -1,0 +1,32 @@
+name: PR Review Requested Webhook
+
+on:
+  pull_request:
+    types:
+      - review_requested
+
+jobs:
+  notify-review-request:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Send PR review request info via curl
+        env:
+          TARGET_URL: https://unacrimonious-anesthetically-dora.ngrok-free.dev/webhook-test/25dadbc3-bdf1-44ab-9071-2d59ec0d4870/webhook
+          GITHUB_EVENT_PATH: ${{ github.event_path }}
+        run: |
+          echo "📦 GitHub Event Payload:"
+          cat "$GITHUB_EVENT_PATH"
+
+          curl -X POST "$TARGET_URL" \
+            -H "Content-Type: application/json" \
+            -d '{
+              "repository": "'"${{ github.repository }}"'",
+              "pr_number": "'"${{ github.event.pull_request.number }}"'",
+              "pr_title": "'"${{ github.event.pull_request.title }}"'",
+              "pr_url": "'"${{ github.event.pull_request.html_url }}"'",
+              "requested_reviewer": "'"${{ github.event.requested_reviewer.login }}"'",
+              "requested_by": "'"${{ github.event.sender.login }}"'",
+              "source_branch": "'"${{ github.event.pull_request.head.ref }}"'",
+              "target_branch": "'"${{ github.event.pull_request.base.ref }}"'"
+            }'
